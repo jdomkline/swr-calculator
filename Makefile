@@ -5,8 +5,8 @@ default: release_debug
 include make-utils/flags.mk
 include make-utils/cpp-utils.mk
 
-# Use C++23
-$(eval $(call use_cpp23))
+# Use C++2b
+$(eval $(call use_cpp2b))
 
 CXX_FLAGS += -pthread -isystem cpp-httplib
 

@@ -540,15 +540,15 @@ void server_simple_api(const httplib::Request& req, httplib::Response& res) {
         portfolio_base = req.get_param_value("portfolio");
         scenario.portfolio  = swr::parse_portfolio(portfolio_base);
     } else {
-        portfolio_base     = std::format("us_stocks:{};us_bonds:{};gold:{};cash:{};ex_us_stocks:{};ch_stocks:{};ch_bonds:{};",
-                                     req.get_param_value("p_us_stocks"),
-                                     req.get_param_value("p_us_bonds"),
-                                     req.get_param_value("p_gold"),
-                                     req.get_param_value("p_cash"),
-                                     req.get_param_value("p_ex_us_stocks"),
-                                     req.get_param_value("p_ch_stocks"),
-                                     req.get_param_value("p_ch_bonds"));
-        scenario.portfolio = swr::parse_portfolio(portfolio_base);
+        //portfolio_base     = std::format("us_stocks:{};us_bonds:{};gold:{};cash:{};ex_us_stocks:{};ch_stocks:{};ch_bonds:{};",
+        //                             req.get_param_value("p_us_stocks"),
+        //                             req.get_param_value("p_us_bonds"),
+        //                             req.get_param_value("p_gold"),
+        //                             req.get_param_value("p_cash"),
+        //                             req.get_param_value("p_ex_us_stocks"),
+        //                             req.get_param_value("p_ch_stocks"),
+        //                             req.get_param_value("p_ch_bonds"));
+        //scenario.portfolio = swr::parse_portfolio(portfolio_base);
     }
 
     // Parse the optional parameters
@@ -1005,6 +1005,7 @@ int main(int argc, const char* argv[]) {
             auto start = std::chrono::high_resolution_clock::now();
 
             scenario.withdraw_frequency = 1;
+            prepare_exchange_rates(scenario, "usd");
 
             float best_wr = 0.0f;
             swr::results best_results;
